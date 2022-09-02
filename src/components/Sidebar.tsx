@@ -1,21 +1,38 @@
 import React from 'react';
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
+import {
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    List
+} from "@mui/material";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import ListItemText from "@mui/material/ListItemText";
-import List from "@mui/material/List";
+
+import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
+import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 
 interface SidebarProps {
     open: boolean;
 }
 
 const Sidebar = ({open}: SidebarProps) => {
+
+    const sidebar = [
+        {id: 1, name: 'Заметки', icon: <LightbulbOutlinedIcon/>},
+        {id: 2, name: 'Напоминания', icon: <NotificationsNoneOutlinedIcon/>},
+        {id: 3, name: 'Изменение ярлыков', icon: <CreateOutlinedIcon/>},
+        {id: 4, name: 'Архив', icon: <ArchiveOutlinedIcon/>},
+        {id: 5, name: 'Корзина', icon: <DeleteOutlineOutlinedIcon/>},
+    ]
+
     return (
         <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+            {sidebar.map(item => (
+                <ListItem key={item.id} disablePadding sx={{ display: 'block' }}>
                     <ListItemButton
                         sx={{
                             minHeight: 48,
@@ -30,9 +47,9 @@ const Sidebar = ({open}: SidebarProps) => {
                                 justifyContent: 'center',
                             }}
                         >
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            {item.icon}
                         </ListItemIcon>
-                        <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                        <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
                     </ListItemButton>
                 </ListItem>
             ))}
