@@ -26,7 +26,7 @@ interface NoteProps {
         id: number;
         title: string;
         text: string;
-    },
+    }
 }
 
 interface Note {

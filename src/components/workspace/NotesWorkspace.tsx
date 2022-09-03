@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {Box, Grid, Typography} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import Input from './Input';
@@ -40,8 +40,8 @@ const NotesWorkspace = () => {
                 {!modal && notes.length > 0 &&
                     <Grid container style={{marginTop: 16}}>
                         {notes.map((note: any) => (
-                            <Grid item key={note.id}>
-                                <Note note={note} />
+                            <Grid item>
+                                <Note note={note} key={note.id} />
                             </Grid>
                         ))}
                     </Grid>

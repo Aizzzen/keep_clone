@@ -1,10 +1,8 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import Modal from '@mui/material/Modal'
 import {Box, Button, TextField} from "@mui/material";
 import {AppContext} from "../../context/AppContext";
 import {styled} from "@mui/material/styles";
-import {random} from "../../utils/random";
-import Note from "./Note";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -29,26 +27,19 @@ const InputsContainer = styled(Box)`
   padding: 10px 15px;
   border-radius: 8px;
   border-color: #e0e0e0;
-  //box-shadow: 0 1px 2px 0 rgb(60 64 67/ 30%), 0 2px 6px 2px rgb(60 64 67/ 15%);
   margin: auto;
   min-height: 30px;
 `
 
 const ModalButton = styled(Button)`
-  display: flex;
-  margin-left: auto;
-  margin-top: 30px;
+  position: absolute;
+  right: 50px;
+  bottom: 5px;
   color: #060817;
   &:hover, &:focus, &:active {
     background: none;
   }
 `
-
-const initialNote = {
-    id: 0,
-    title: '',
-    text: ''
-}
 
 interface NoteType {
     id: number;
@@ -64,18 +55,11 @@ const ModalComponent = ({open}: ModalComponentProps) => {
     const {notes, setNotes, setModal, clickedNote} = useContext(AppContext)
     const [currentNote, setCurrentNote] = useState(clickedNote)
     const modalContainerRef = useRef(document.createElement('div'))
-    console.log(clickedNote)
-
-    // useEffect(() => {
-    //     chosenNote(clickedNoteId)
-    // }, [])
 
     const handleClose = () => {
         const filteredNotes = notes.filter((item: NoteType) => item.id !== currentNote.id)
-        console.log(filteredNotes)
-        const updatedNotes = filteredNotes.push(currentNote)
+        const updatedNotes = [...filteredNotes, currentNote]
         setNotes(updatedNotes)
-        // console.log(notes)
         setModal(false)
     }
 

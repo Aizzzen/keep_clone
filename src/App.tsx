@@ -7,7 +7,7 @@ function App() {
   const [saveNotes, setSaveNotes] = useState([])
   const [deleteNotes, setDeleteNotes] = useState([])
 
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(true)
   const [clickedNote, setClickedNote] = useState(0)
 
     return (
