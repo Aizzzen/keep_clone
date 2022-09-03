@@ -26,7 +26,7 @@ interface NoteProps {
         id: number;
         title: string;
         text: string;
-    }
+    },
 }
 
 interface Note {
@@ -36,13 +36,13 @@ interface Note {
 }
 
 const Note = ({note}: NoteProps) => {
-    const {notes, setNotes, setSaveNotes, setDeleteNotes, setModal} = useContext(AppContext)
+    const {notes, setNotes, setSaveNotes, setDeleteNotes, setModal, setClickedNote} = useContext(AppContext)
 
-    const saveNote = (note: Note) => {
-        const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
-        setNotes(filteredNotes)
-        setSaveNotes((prevState: any) => [note, ...prevState])
-    }
+    // const saveNote = (note: Note) => {
+    //     const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
+    //     setNotes(filteredNotes)
+    //     setSaveNotes((prevState: any) => [note, ...prevState])
+    // }
 
     const deleteNote = (note: Note) => {
         const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
@@ -50,9 +50,15 @@ const Note = ({note}: NoteProps) => {
         setDeleteNotes((prevState: any) => [note, ...prevState])
     }
 
+    const handleCardClick = () => {
+        const clickedNote = notes.filter((item: Note) => item.id === note.id)
+        setClickedNote({...clickedNote[0]})
+        setModal(true)
+    }
+
     return (
         <CardContainer>
-            <CardContent>
+            <CardContent onClick={handleCardClick}>
                 <Typography>{note.title}</Typography>
                 <Typography>{note.text}</Typography>
             </CardContent>
@@ -66,8 +72,8 @@ const Note = ({note}: NoteProps) => {
                 />
                 <ArchiveOutlinedIcon
                     fontSize='small'
-                    style={{cursor: 'pointer'}}
-                    onClick={() => saveNote(note)}
+                    // style={{cursor: 'pointer'}}
+                    // onClick={() => saveNote(note)}
                 />
                 <DeleteOutlineOutlinedIcon
                     fontSize='small'

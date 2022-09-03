@@ -40,8 +40,8 @@ const NotesWorkspace = () => {
                 {!modal && notes.length > 0 &&
                     <Grid container style={{marginTop: 16}}>
                         {notes.map((note: any) => (
-                            <Grid item>
-                                <Note note={note}/>
+                            <Grid item key={note.id}>
+                                <Note note={note} />
                             </Grid>
                         ))}
                     </Grid>
