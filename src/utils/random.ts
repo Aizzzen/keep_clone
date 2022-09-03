@@ -1,7 +1,3 @@
 export const random = () => {
-    return +Math.random().toFixed(1)*10;
+    return +(Math.random()*1000000000000).toFixed()
 }
-
-console.log(random())
-
-export default random;

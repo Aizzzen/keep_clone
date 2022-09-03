@@ -2,6 +2,7 @@ import React, {useRef, useState, useContext} from 'react';
 import {Box, TextField, ClickAwayListener} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import {AppContext} from "../../context/AppContext";
+import {random} from "../../utils/random";
 
 const InputsContainer = styled(Box)`
   display: flex;
@@ -15,18 +16,20 @@ const InputsContainer = styled(Box)`
   min-height: 30px;
 `
 
-const note = {
-    id: '',
-    heading: '',
+// CHANGE
+const initialNote = {
+    id: 0,
+    title: '',
     text: ''
 }
 
 const Input = () => {
     const [isTextFieldOpen, setIsTextFieldOpen] = useState(false)
 
-    const [notes, setNotes] = useState(note)
+    // CHANGE
+    const [currentNote, setCurrentNote] = useState(initialNote)
 
-    const {items, setItems} = useContext(AppContext)
+    const {setNotes} = useContext(AppContext)
     const inputContainerRef = useRef(document.createElement('div'))
 
     const onTextFieldOpen = () => {
@@ -34,29 +37,50 @@ const Input = () => {
         inputContainerRef.current.style.minHeight = '100px'
     }
 
-    const handleClickAwayListener = () => {
+    const onClickAwayListener = () => {
         setIsTextFieldOpen(false)
         inputContainerRef.current.style.minHeight = '30px'
+        setCurrentNote({...initialNote, id: random()})
+
+        if(currentNote.title || currentNote.text) {
+            // @ts-ignore
+            setNotes(prevState => [currentNote, ...prevState])
+        }
+    }
+
+    const onTextFieldChange = (e: any) => {
+        const createdNote = {
+            ...currentNote,
+            id: random(),
+            [e.target.name]: e.target.value
+        }
+        setCurrentNote(createdNote)
     }
 
     return (
-        <ClickAwayListener onClickAway={handleClickAwayListener}>
+        <ClickAwayListener onClickAway={onClickAwayListener}>
             <InputsContainer ref={inputContainerRef}>
                 {isTextFieldOpen &&
                 <TextField
+                    name='title'
                     placeholder='Введите заголовок'
+                    value={currentNote.title}
                     variant='standard'
                     InputProps={{disableUnderline: true}}
                     style={{marginBottom: 10}}
+                    onChange={(e) => onTextFieldChange(e)}
                 />
                 }
                 <TextField
+                    name='text'
                     placeholder='Заметка...'
+                    value={currentNote.text}
                     multiline
                     maxRows={Infinity}
                     variant='standard'
                     InputProps={{disableUnderline: true}}
                     onClick={onTextFieldOpen}
+                    onChange={(e) => onTextFieldChange(e)}
                 />
             </InputsContainer>
         </ClickAwayListener>

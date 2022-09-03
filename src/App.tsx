@@ -3,18 +3,18 @@ import AppContainer from "./components/AppContainer";
 import { AppContext } from './context/AppContext';
 
 function App() {
-  const [items, setItems] = useState([])
-  const [saveItems, setSaveItems] = useState([])
-  const [deleteItems, setDeleteItems] = useState([])
+  const [notes, setNotes] = useState([])
+  const [saveNotes, setSaveNotes] = useState([])
+  const [deleteNotes, setDeleteNotes] = useState([])
 
   return (
     <AppContext.Provider value={{
-      items,
-      setItems,
-      saveItems,
-      setSaveItems,
-      deleteItems,
-      setDeleteItems
+      notes,
+      setNotes,
+      saveNotes,
+      setSaveNotes,
+      deleteNotes,
+      setDeleteNotes
     }}>
         <AppContainer/>
     </AppContext.Provider>
