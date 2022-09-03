@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {styled} from "@mui/material/styles";
-import logo from '../assests/images/keepLogo.png'
+import logo from '../../assests/images/keepLogo.png'
 
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean;

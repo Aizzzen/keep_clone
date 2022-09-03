@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import AppContainer from "./components/AppContainer";
-import WorkSpace from './components/Workspace'
+import WorkSpace from './components/workspace/Workspace'
 import {Box} from "@mui/material";
 import {styled} from "@mui/material/styles";
 
