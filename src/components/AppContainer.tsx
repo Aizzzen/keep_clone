@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from "../components/layout/Layout";
-import WorkSpace from '../components/workspace/Workspace'
+import WorkSpace from './workspace/NotesWorkspace'
 import {Box} from "@mui/material";
 import {styled} from "@mui/material/styles";
 
