@@ -1,21 +1,23 @@
-import React from 'react';
-import './App.css';
+import React, {useState} from 'react';
 import AppContainer from "./components/AppContainer";
-import WorkSpace from './components/workspace/Workspace'
-import {Box} from "@mui/material";
-import {styled} from "@mui/material/styles";
-
-const AppBox = styled(Box)`
-  display: flex;
-  width: 100%;
-`
+import { AppContext } from './context/AppContext';
 
 function App() {
+  const [items, setItems] = useState([])
+  const [saveItems, setSaveItems] = useState([])
+  const [deleteItems, setDeleteItems] = useState([])
+
   return (
-    <AppBox>
-        <AppContainer />
-        <WorkSpace />
-    </AppBox>
+    <AppContext.Provider value={{
+      items,
+      setItems,
+      saveItems,
+      setSaveItems,
+      deleteItems,
+      setDeleteItems
+    }}>
+        <AppContainer/>
+    </AppContext.Provider>
   );
 }
 

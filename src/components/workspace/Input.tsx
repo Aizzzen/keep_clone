@@ -1,6 +1,7 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useContext} from 'react';
 import {Box, TextField, ClickAwayListener} from "@mui/material";
 import {styled} from "@mui/material/styles";
+import {AppContext} from "../../context/AppContext";
 
 const InputsContainer = styled(Box)`
   display: flex;
@@ -14,9 +15,18 @@ const InputsContainer = styled(Box)`
   min-height: 30px;
 `
 
+const note = {
+    id: '',
+    heading: '',
+    text: ''
+}
+
 const Input = () => {
     const [isTextFieldOpen, setIsTextFieldOpen] = useState(false)
 
+    const [notes, setNotes] = useState(note)
+
+    const {items, setItems} = useContext(AppContext)
     const inputContainerRef = useRef(document.createElement('div'))
 
     const onTextFieldOpen = () => {
