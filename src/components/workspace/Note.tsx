@@ -16,6 +16,9 @@ const CardContainer = styled(Card)`
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   box-shadow: none;
+  &:hover {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67/ 30%), 0 2px 6px 2px rgb(60 64 67/ 15%);
+  }
 `
 
 interface NoteProps {
@@ -33,7 +36,7 @@ interface Note {
 }
 
 const Note = ({note}: NoteProps) => {
-    const {notes, setNotes, setSaveNotes, setDeleteNotes} = useContext(AppContext)
+    const {notes, setNotes, setSaveNotes, setDeleteNotes, setModal} = useContext(AppContext)
 
     const saveNote = (note: Note) => {
         const filteredNotes = notes.filter((item: Note) => item.id !== note.id)

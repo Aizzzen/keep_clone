@@ -7,14 +7,18 @@ function App() {
   const [saveNotes, setSaveNotes] = useState([])
   const [deleteNotes, setDeleteNotes] = useState([])
 
-  return (
+  const [modal, setModal] = useState(true)
+
+    return (
     <AppContext.Provider value={{
       notes,
       setNotes,
       saveNotes,
       setSaveNotes,
       deleteNotes,
-      setDeleteNotes
+      setDeleteNotes,
+      modal,
+      setModal
     }}>
         <AppContainer/>
     </AppContext.Provider>

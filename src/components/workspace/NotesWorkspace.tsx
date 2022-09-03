@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Box, Grid, Typography} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import Input from './Input';
@@ -6,6 +6,7 @@ import Note from "./Note";
 import {AppContext} from "../../context/AppContext";
 
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
+import ModalComponent from "./Modal";
 
 const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar
@@ -29,27 +30,30 @@ const BigLightBox = styled(Box)`
 `
 
 const NotesWorkspace = () => {
-    const {notes} = useContext(AppContext)
+    const {notes, modal} = useContext(AppContext)
 
     return (
         <Box sx={{display: 'flex', width: '100%'}}>
             <Box sx={{p: 3, width: '100%'}}>
                 <DrawerHeader />
                 <Input />
-                {notes.length > 0
-                    ?
+                {!modal && notes.length > 0 &&
                     <Grid container style={{marginTop: 16}}>
                         {notes.map((note: any) => (
                             <Grid item>
-                                <Note note={note} />
+                                <Note note={note}/>
                             </Grid>
                         ))}
                     </Grid>
-                    :
+                }
+                {!modal && notes.length === 0 &&
                     <BigLightBox>
                         <BigLightIcon/>
                         <BigLightTitle>Здесь будут ваши заметки</BigLightTitle>
                     </BigLightBox>
+                }
+                {modal &&
+                    <ModalComponent open={modal} />
                 }
             </Box>
         </Box>
