@@ -43,8 +43,7 @@ const Input = () => {
         setCurrentNote({...initialNote, id: random()})
 
         if(currentNote.title || currentNote.text) {
-            // @ts-ignore
-            setNotes(prevState => [currentNote, ...prevState])
+            setNotes((prevState: any) => [currentNote, ...prevState])
         }
     }
 

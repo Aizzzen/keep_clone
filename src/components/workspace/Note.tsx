@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Card, CardActions, CardContent, Typography} from "@mui/material";
 
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
@@ -8,6 +8,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 
 
 import {styled} from "@mui/material/styles";
+import {AppContext} from "../../context/AppContext";
 
 const CardContainer = styled(Card)`
   width: 240px;
@@ -25,7 +26,27 @@ interface NoteProps {
     }
 }
 
+interface Note {
+    id: number;
+    title: string;
+    text: string;
+}
+
 const Note = ({note}: NoteProps) => {
+    const {notes, setNotes, setSaveNotes, setDeleteNotes} = useContext(AppContext)
+
+    const saveNote = (note: Note) => {
+        const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
+        setNotes(filteredNotes)
+        setSaveNotes((prevState: any) => [note, ...prevState])
+    }
+
+    const deleteNote = (note: Note) => {
+        const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
+        setNotes(filteredNotes)
+        setDeleteNotes((prevState: any) => [note, ...prevState])
+    }
+
     return (
         <CardContainer>
             <CardContent>
@@ -42,9 +63,13 @@ const Note = ({note}: NoteProps) => {
                 />
                 <ArchiveOutlinedIcon
                     fontSize='small'
+                    style={{cursor: 'pointer'}}
+                    onClick={() => saveNote(note)}
                 />
                 <DeleteOutlineOutlinedIcon
                     fontSize='small'
+                    style={{cursor: 'pointer'}}
+                    onClick={() => deleteNote(note)}
                 />
             </CardActions>
         </CardContainer>
