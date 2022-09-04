@@ -14,9 +14,9 @@ const SearchComponent:FC = () => {
     const [searchQuery, setSearchQuery] = useState<string>('')
 
     const noteSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value)
+        setSearchQuery(e.target.value.toLowerCase())
         setSearch(true)
-        const filteredNotes = notes.filter((note: INote) => note.title.includes(e.target.value) || note.text.includes(e.target.value))
+        const filteredNotes = notes.filter((note: INote) => note.title.toLowerCase().includes(e.target.value) || note.text.toLowerCase().includes(e.target.value))
         setSearchedNotes(filteredNotes)
     }
 
