@@ -4,8 +4,8 @@ import {AppContext} from "../../../context/AppContext";
 import Input from '../input/Input';
 import ModalComponent from "../modal/Modal";
 import Empty from "../ui/empty/Empty";
-import Note from "../ui/note/Note";
-import Searched from "../ui/searched/Searched";
+import Note from "../ui/Note";
+import Searched from "../ui/Searched";
 import {DrawerHeader} from "./NotesWorkspaceStyle";
 
 const NotesWorkspace = () => {
