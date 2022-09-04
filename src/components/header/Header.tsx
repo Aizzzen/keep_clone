@@ -35,15 +35,17 @@ const Title = styled(Typography)`
 const Search = styled('div')`
   position: relative;
   border-radius: 4px;
-  background-color: #e2e3f1;
+  background-color: #ededf1;
   margin-left: 30px;
   width: 500px;
   min-height: 45px;
+
   &:hover {
     transition: .5s;
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgb(60 64 67/ 30%), 0 2px 6px 2px rgb(60 64 67/ 15%);
   }
+
   transition: .5s;
 `
 
