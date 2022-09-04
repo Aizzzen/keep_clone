@@ -71,7 +71,7 @@ const NotesWorkspace = () => {
         <Box sx={{display: 'flex', width: '100%'}}>
             <Box sx={{p: 3, width: '100%'}}>
                 <DrawerHeader />
-                <Input />
+                {!search && <Input/>}
                 {!modal && !search && notes.length > 0 &&
                     <Grid container style={{marginTop: 16}}>
                         {notes.map((note: any) => (
@@ -100,6 +100,18 @@ const NotesWorkspace = () => {
                                         <Typography>{searchedNote.text}</Typography>
                                     </CardContent>
                                     <CardActions>
+                                        <NotificationsNoneOutlinedIcon
+                                            fontSize='small'
+                                            style={{marginLeft: 'auto'}}
+                                        />
+                                        <CreateOutlinedIcon
+                                            fontSize='small'
+                                        />
+                                        <ArchiveOutlinedIcon
+                                            fontSize='small'
+                                            // style={{cursor: 'pointer'}}
+                                            // onClick={() => saveNote(note)}
+                                        />
                                         <DeleteOutlineOutlinedIcon
                                             fontSize='small'
                                             style={{cursor: 'pointer'}}

@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import {styled} from "@mui/material/styles";
 import logo from '../../assests/images/keepLogo.png'
 import {AppContext} from "../../context/AppContext";
@@ -67,6 +68,20 @@ const CustomSearchIcon = styled(SearchOutlinedIcon)`
   margin-left: 5px;
 `
 
+const CustomCloseIcon = styled(CloseOutlinedIcon)`
+  width: 25px;
+  height: 25px;
+  color: #72737a;
+  position: absolute;
+  right: 15px;
+  bottom: 14px;
+
+  &:hover {
+    background-color: #a3a3a6;
+    border-radius: 20px;
+  }
+`
+
 interface NoteType {
     id: number;
     title: string;
@@ -79,7 +94,7 @@ interface HeaderProps {
 }
 
 const Header = ({open, handleDrawer}: HeaderProps) => {
-    const {notes, setSearchedNotes, setSearch} = useContext(AppContext)
+    const {notes, setSearchedNotes, search, setSearch} = useContext(AppContext)
     const [searchQuery, setSearchQuery] = useState('')
 
     const noteSearch = (e: any) => {
@@ -119,11 +134,9 @@ const Header = ({open, handleDrawer}: HeaderProps) => {
                         value={searchQuery}
                         onChange={(e) => noteSearch(e)}
                     />
-                    <button
+                    {search && <CustomCloseIcon
                         onClick={cleanSearchedNotes}
-                    >
-                        X
-                    </button>
+                    />}
                 </Search>
             </Toolbar>
         </AppBar>
