@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {BigLightBox, BigLightIcon, BigLightTitle} from "./EmptyStyle";
 
-const Empty = () => {
+const Empty:FC = () => {
     return (
         <BigLightBox>
             <BigLightIcon/>

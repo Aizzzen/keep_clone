@@ -3,12 +3,13 @@ import {Box} from '@mui/material';
 import Header from '../header/Header';
 import Sidebar from "../sidebar/Sidebar";
 import {Drawer, DrawerHeader} from "./LayoutStyle";
+import {FC, useState} from "react";
 
 
-const Layout = () => {
-    const [open, setOpen] = React.useState(false);
+const Layout:FC = () => {
+    const [open, setOpen] = useState<boolean>(false);
 
-    const handleDrawer = () => {
+    const handleDrawer = (e: React.MouseEvent<HTMLButtonElement>) => {
         setOpen(prevState => !prevState);
     };
 

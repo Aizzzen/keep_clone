@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Layout from "../components/layout/Layout";
 import WorkSpace from './workspace/notesWorkspace/NotesWorkspace'
 import {AppBox} from "./AppContainerStyle";
 
-const AppContainer = () => {
+const AppContainer:FC = () => {
     return (
         <AppBox>
             <Layout />

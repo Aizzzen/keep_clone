@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {FC, useContext, useState} from 'react';
 import {AppContext} from "../../../context/AppContext";
 import {
     CustomCloseIcon,
@@ -7,25 +7,20 @@ import {
     SearchIconWrapper,
     StyledInputBase
 } from "./SearchStyles";
+import {INote} from "../../../types/types";
 
-interface NoteType {
-    id: number;
-    title: string;
-    text: string;
-}
-
-const SearchComponent = () => {
+const SearchComponent:FC = () => {
     const {notes, setSearchedNotes, search, setSearch} = useContext(AppContext)
-    const [searchQuery, setSearchQuery] = useState('')
+    const [searchQuery, setSearchQuery] = useState<string>('')
 
-    const noteSearch = (e: any) => {
+    const noteSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value)
         setSearch(true)
-        const filteredNotes = notes.filter((note: NoteType) => note.title.includes(e.target.value) || note.text.includes(e.target.value))
+        const filteredNotes = notes.filter((note: INote) => note.title.includes(e.target.value) || note.text.includes(e.target.value))
         setSearchedNotes(filteredNotes)
     }
 
-    const cleanSearchedNotes = () => {
+    const cleanSearchedNotes = (e: React.MouseEvent<SVGSVGElement>) => {
         setSearchedNotes([])
         setSearchQuery('')
         setSearch(false)
@@ -40,7 +35,7 @@ const SearchComponent = () => {
                 placeholder="Поиск…"
                 inputProps={{ 'aria-label': 'search' }}
                 value={searchQuery}
-                onChange={(e) => noteSearch(e)}
+                onChange={noteSearch}
             />
             {search &&
                 <CustomCloseIcon

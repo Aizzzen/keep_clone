@@ -1,21 +1,19 @@
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import AppContainer from "./components/AppContainer";
 import {AppContext} from './context/AppContext';
+import {INote} from "./types/types";
 
-function App() {
-  const [notes, setNotes] = useState([])
-  const [deleteNotes, setDeleteNotes] = useState([])
-  const [modal, setModal] = useState(false)
-  const [clickedNote, setClickedNote] = useState(0)
-  const [search, setSearch] = useState(false)
-  const [searchedNotes, setSearchedNotes] = useState([])
+const App:FC = () => {
+  const [notes, setNotes] = useState<INote[]>([])
+  const [modal, setModal] = useState<boolean>(false)
+  const [clickedNote, setClickedNote] = useState<number>(0)
+  const [search, setSearch] = useState<boolean>(false)
+  const [searchedNotes, setSearchedNotes] = useState<INote[]>([])
 
     return (
       <AppContext.Provider value={{
         notes,
         setNotes,
-        deleteNotes,
-        setDeleteNotes,
         modal,
         setModal,
         clickedNote,

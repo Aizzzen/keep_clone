@@ -30,7 +30,7 @@ export const InputsContainer = styled(Box)`
 
 export const ModalButton = styled(Button)`
   position: absolute;
-  right: 50px;
+  right: 30px;
   bottom: 5px;
   color: #060817;
   &:hover, &:focus, &:active {

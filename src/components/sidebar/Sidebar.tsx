@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {
     ListItem,
     ListItemButton,
@@ -11,13 +11,14 @@ import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
+import {ISidebar} from "../../types/types";
 
 interface SidebarProps {
     open: boolean;
 }
 
-const Sidebar = ({open}: SidebarProps) => {
-    const sidebar = [
+const Sidebar:FC<SidebarProps> = ({open}) => {
+    const sidebar: ISidebar[] = [
         {id: 1, name: 'Заметки', icon: <LightbulbOutlinedIcon/>},
         {id: 2, name: 'Напоминания', icon: <NotificationsNoneOutlinedIcon/>},
         {id: 3, name: 'Изменение ярлыков', icon: <CreateOutlinedIcon/>},
@@ -27,7 +28,7 @@ const Sidebar = ({open}: SidebarProps) => {
 
     return (
         <List>
-            {sidebar.map(item => (
+            {sidebar.map((item: ISidebar) => (
                 <ListItem key={item.id} disablePadding sx={{ display: 'block' }}>
                     <ListItemButton
                         sx={{

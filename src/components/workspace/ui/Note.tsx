@@ -1,38 +1,27 @@
-import React, {useContext} from 'react';
+import React, {FC, useContext} from 'react';
 import {AppContext} from "../../../context/AppContext";
 import Container from "./container/Container";
+import {INote} from "../../../types/types";
 
 interface NoteProps {
-    note: {
-        id: number;
-        title: string;
-        text: string;
-    }
+    note: INote
 }
 
-interface Note {
-    id: number;
-    title: string;
-    text: string;
-}
-
-const Note = ({note}: NoteProps) => {
+const Note:FC<NoteProps> = ({note}) => {
     const {
         notes,
         setNotes,
-        setDeleteNotes,
         setModal,
         setClickedNote
     } = useContext(AppContext)
 
-    const deleteNote = (note: Note) => {
-        const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
+    const deleteNote = (note: INote) => {
+        const filteredNotes = notes.filter((item: INote) => item.id !== note.id)
         setNotes(filteredNotes)
-        setDeleteNotes((prevState: any) => [note, ...prevState])
     }
 
-    const handleCardClick = () => {
-        const clickedNote = notes.filter((item: Note) => item.id === note.id)
+    const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        const clickedNote = notes.filter((item: INote) => item.id === note.id)
         setClickedNote({...clickedNote[0]})
         setModal(true)
     }

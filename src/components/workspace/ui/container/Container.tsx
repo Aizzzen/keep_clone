@@ -1,28 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {CardActions, CardContent, Typography} from "@mui/material";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import {CardContainer} from "./ContainerStyle";
-
-interface Note {
-    id: number;
-    title: string;
-    text: string;
-}
+import {INote} from "../../../../types/types";
 
 interface NoteProps {
-    note: {
-        id: number;
-        title: string;
-        text: string;
-    },
-    deleteNote: (note: Note) => void;
-    handleCardClick?: () => void;
+    note: INote
+    deleteNote: (note: INote) => void;
+    handleCardClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
-const Container = ({note, deleteNote, handleCardClick}: NoteProps) => {
+const Container:FC<NoteProps> = ({note, deleteNote, handleCardClick}) => {
     return (
         <CardContainer>
             <CardContent onClick={handleCardClick}>

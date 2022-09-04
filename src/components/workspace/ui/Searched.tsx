@@ -1,36 +1,25 @@
-import React, {useContext} from 'react';
+import React, {FC, useContext} from 'react';
 import {AppContext} from "../../../context/AppContext";
 import Container from "./container/Container";
-
-interface Note {
-    id: number;
-    title: string;
-    text: string;
-}
+import {INote} from "../../../types/types";
 
 interface SearchedProps {
-    searchedNote: {
-        id: number;
-        title: string;
-        text: string;
-    },
+    searchedNote: INote
 }
 
-const Searched = ({searchedNote}: SearchedProps) => {
+const Searched:FC<SearchedProps> = ({searchedNote}) => {
     const {
         notes,
         searchedNotes,
         setSearchedNotes,
         setNotes,
-        setDeleteNotes,
     } = useContext(AppContext)
 
-    const deleteSearchedNote = (note: Note) => {
-        const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
-        const filteredSearchedNotes = searchedNotes.filter((item: Note) => item.id !== note.id)
+    const deleteSearchedNote = (note: INote) => {
+        const filteredNotes = notes.filter((item: INote) => item.id !== note.id)
+        const filteredSearchedNotes = searchedNotes.filter((item: INote) => item.id !== note.id)
         setNotes(filteredNotes)
         setSearchedNotes(filteredSearchedNotes)
-        setDeleteNotes((prevState: any) => [note, ...prevState])
     }
 
     return (

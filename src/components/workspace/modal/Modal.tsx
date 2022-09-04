@@ -1,32 +1,27 @@
-import React, {useContext, useRef, useState} from 'react';
+import React, {FC, useContext, useRef, useState} from 'react';
 import Modal from '@mui/material/Modal'
 import {Box, TextField} from "@mui/material";
 import {AppContext} from "../../../context/AppContext";
 import {InputsContainer, ModalButton, style} from "./ModalStyle";
-
-interface NoteType {
-    id: number;
-    title: string;
-    text: string;
-}
+import {INote} from "../../../types/types";
 
 interface ModalComponentProps {
     open: boolean;
 }
 
-const ModalComponent = ({open}: ModalComponentProps) => {
+const ModalComponent: FC<ModalComponentProps> = ({open}) => {
     const {notes, setNotes, setModal, clickedNote} = useContext(AppContext)
-    const [currentNote, setCurrentNote] = useState(clickedNote)
-    const modalContainerRef = useRef(document.createElement('div'))
+    const [currentNote, setCurrentNote] = useState<INote>(clickedNote)
+    const modalContainerRef = useRef<HTMLDivElement>(document.createElement('div'))
 
     const handleClose = () => {
-        const filteredNotes = notes.filter((item: NoteType) => item.id !== currentNote.id)
+        const filteredNotes = notes.filter((item: INote) => item.id !== currentNote.id)
         const updatedNotes = [...filteredNotes, currentNote]
         setNotes(updatedNotes)
         setModal(false)
     }
 
-    const onModalTextFieldChange = (e: any) => {
+    const onModalTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const updatedNote = {
             ...currentNote,
             [e.target.name]: e.target.value
@@ -48,7 +43,7 @@ const ModalComponent = ({open}: ModalComponentProps) => {
                         variant='standard'
                         InputProps={{disableUnderline: true}}
                         style={{marginBottom: 10}}
-                        onChange={(e) => onModalTextFieldChange(e)}
+                        onChange={onModalTextFieldChange}
                     />
                     <TextField
                         name='text'
@@ -59,7 +54,7 @@ const ModalComponent = ({open}: ModalComponentProps) => {
                         variant='standard'
                         InputProps={{disableUnderline: true}}
                         // onClick={onTextFieldOpen}
-                        onChange={(e) => onModalTextFieldChange(e)}
+                        onChange={onModalTextFieldChange}
                     />
                 </InputsContainer>
                 <ModalButton

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {
     Toolbar,
     IconButton,
@@ -10,11 +10,10 @@ import {AppBar, Title} from "./HeaderStyle";
 
 interface HeaderProps {
     open: boolean;
-    handleDrawer: () => void;
+    handleDrawer: React.MouseEventHandler<HTMLButtonElement>
 }
 
-const Header = ({open, handleDrawer}: HeaderProps) => {
-
+const Header:FC<HeaderProps> = ({open, handleDrawer}) => {
     return (
         <AppBar open={open}>
             <Toolbar>

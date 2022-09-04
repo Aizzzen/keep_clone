@@ -1,8 +1,9 @@
-import React, {useRef, useState, useContext} from 'react';
+import React, {useRef, useState, useContext, FC} from 'react';
 import {TextField, ClickAwayListener} from "@mui/material";
 import {AppContext} from "../../../context/AppContext";
 import {random} from "../../../utils/random";
 import {InputsContainer} from "./InputStyle";
+import {INote} from "../../../types/types";
 
 const initialNote = {
     id: 0,
@@ -10,28 +11,28 @@ const initialNote = {
     text: ''
 }
 
-const Input = () => {
-    const [isTextFieldOpen, setIsTextFieldOpen] = useState(false)
-    const [currentNote, setCurrentNote] = useState(initialNote)
+const Input:FC = () => {
+    const [isTextFieldOpen, setIsTextFieldOpen] = useState<boolean>(false)
+    const [currentNote, setCurrentNote] = useState<INote>(initialNote)
     const {setNotes} = useContext(AppContext)
     const inputContainerRef = useRef(document.createElement('div'))
 
-    const onTextFieldOpen = () => {
+    const onTextFieldOpen = (e: React.MouseEvent<HTMLInputElement>) => {
         setIsTextFieldOpen(true)
         inputContainerRef.current.style.minHeight = '100px'
     }
 
-    const onClickAwayListener = () => {
+    const onClickAwayListener = (e: MouseEvent | TouchEvent) => {
         setIsTextFieldOpen(false)
         inputContainerRef.current.style.minHeight = '30px'
         setCurrentNote({...initialNote, id: random()})
 
         if(currentNote.title || currentNote.text) {
-            setNotes((prevState: any) => [currentNote, ...prevState])
+            setNotes((prevState: INote[]) => [currentNote, ...prevState])
         }
     }
 
-    const onTextFieldChange = (e: any) => {
+    const onTextFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const createdNote = {
             ...currentNote,
             id: random(),
@@ -51,7 +52,7 @@ const Input = () => {
                     variant='standard'
                     InputProps={{disableUnderline: true}}
                     style={{marginBottom: 10}}
-                    onChange={(e) => onTextFieldChange(e)}
+                    onChange={onTextFieldChange}
                 />
                 }
                 <TextField
@@ -63,7 +64,7 @@ const Input = () => {
                     variant='standard'
                     InputProps={{disableUnderline: true}}
                     onClick={onTextFieldOpen}
-                    onChange={(e) => onTextFieldChange(e)}
+                    onChange={onTextFieldChange}
                 />
             </InputsContainer>
         </ClickAwayListener>
