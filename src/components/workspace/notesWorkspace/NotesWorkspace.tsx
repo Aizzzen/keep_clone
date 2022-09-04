@@ -1,17 +1,12 @@
 import React, {useContext} from 'react';
 import {Box, Grid} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import Input from './Input';
-import Note from "./ui/Note";
-import {AppContext} from "../../context/AppContext";
-
-import ModalComponent from "./Modal";
-import Empty from "./ui/Empty";
-import Searched from "./ui/Searched";
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-    ...theme.mixins.toolbar
-}));
+import {AppContext} from "../../../context/AppContext";
+import Input from '../input/Input';
+import ModalComponent from "../modal/Modal";
+import Empty from "../ui/empty/Empty";
+import Note from "../ui/note/Note";
+import Searched from "../ui/searched/Searched";
+import {DrawerHeader} from "./NotesWorkspaceStyle";
 
 const NotesWorkspace = () => {
     const {

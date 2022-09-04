@@ -1,45 +1,8 @@
 import React, {useContext, useRef, useState} from 'react';
 import Modal from '@mui/material/Modal'
-import {Box, Button, TextField} from "@mui/material";
-import {AppContext} from "../../context/AppContext";
-import {styled} from "@mui/material/styles";
-
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '35%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 550,
-    height: 150,
-    bgcolor: 'background.paper',
-    border: 'none',
-    borderRadius: '8px',
-    boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
-};
-
-const InputsContainer = styled(Box)`
-  display: flex;
-  flex-direction: column;
-  width: 540px;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border-color: #e0e0e0;
-  margin: auto;
-  min-height: 30px;
-`
-
-const ModalButton = styled(Button)`
-  position: absolute;
-  right: 50px;
-  bottom: 5px;
-  color: #060817;
-  &:hover, &:focus, &:active {
-    background: none;
-  }
-`
+import {Box, TextField} from "@mui/material";
+import {AppContext} from "../../../context/AppContext";
+import {InputsContainer, ModalButton, style} from "./ModalStyle";
 
 interface NoteType {
     id: number;

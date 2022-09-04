@@ -6,7 +6,6 @@ import {
     ListItemText,
     List
 } from "@mui/material";
-
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
@@ -18,7 +17,6 @@ interface SidebarProps {
 }
 
 const Sidebar = ({open}: SidebarProps) => {
-
     const sidebar = [
         {id: 1, name: 'Заметки', icon: <LightbulbOutlinedIcon/>},
         {id: 2, name: 'Напоминания', icon: <NotificationsNoneOutlinedIcon/>},
