@@ -75,8 +75,6 @@ const ModalComponent = ({open}: ModalComponentProps) => {
         <Modal
             open={open}
             onClose={handleClose}
-            // aria-labelledby="parent-modal-title"
-            // aria-describedby="parent-modal-description"
         >
             <Box sx={{ ...style}}>
                 <InputsContainer ref={modalContainerRef}>
@@ -104,7 +102,9 @@ const ModalComponent = ({open}: ModalComponentProps) => {
                 <ModalButton
                     variant='text'
                     onClick={handleClose}
-                >Закрыть</ModalButton>
+                >
+                    Закрыть
+                </ModalButton>
             </Box>
         </Modal>
     );

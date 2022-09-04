@@ -16,7 +16,6 @@ const InputsContainer = styled(Box)`
   min-height: 30px;
 `
 
-// CHANGE
 const initialNote = {
     id: 0,
     title: '',
@@ -25,10 +24,7 @@ const initialNote = {
 
 const Input = () => {
     const [isTextFieldOpen, setIsTextFieldOpen] = useState(false)
-
-    // CHANGE
     const [currentNote, setCurrentNote] = useState(initialNote)
-
     const {setNotes} = useContext(AppContext)
     const inputContainerRef = useRef(document.createElement('div'))
 

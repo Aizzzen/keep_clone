@@ -8,7 +8,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 
 
 import {styled} from "@mui/material/styles";
-import {AppContext} from "../../context/AppContext";
+import {AppContext} from "../../../context/AppContext";
 
 const CardContainer = styled(Card)`
   width: 240px;
@@ -39,17 +39,10 @@ const Note = ({note}: NoteProps) => {
     const {
         notes,
         setNotes,
-        // setSaveNotes,
         setDeleteNotes,
         setModal,
         setClickedNote
     } = useContext(AppContext)
-
-    // const saveNote = (note: Note) => {
-    //     const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
-    //     setNotes(filteredNotes)
-    //     setSaveNotes((prevState: any) => [note, ...prevState])
-    // }
 
     const deleteNote = (note: Note) => {
         const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
@@ -79,8 +72,6 @@ const Note = ({note}: NoteProps) => {
                 />
                 <ArchiveOutlinedIcon
                     fontSize='small'
-                    // style={{cursor: 'pointer'}}
-                    // onClick={() => saveNote(note)}
                 />
                 <DeleteOutlineOutlinedIcon
                     fontSize='small'
