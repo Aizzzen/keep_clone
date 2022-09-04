@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
     AppBar as MuiAppBar,
     AppBarProps as MuiAppBarProps,
@@ -10,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import {styled} from "@mui/material/styles";
 import logo from '../../assests/images/keepLogo.png'
+import {AppContext} from "../../context/AppContext";
 
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
@@ -66,12 +67,29 @@ const CustomSearchIcon = styled(SearchOutlinedIcon)`
   margin-left: 5px;
 `
 
+interface NoteType {
+    id: number;
+    title: string;
+    text: string;
+}
+
 interface HeaderProps {
     open: boolean;
     handleDrawer: () => void;
 }
 
 const Header = ({open, handleDrawer}: HeaderProps) => {
+    const {notes, setSearchedNotes} = useContext(AppContext)
+
+    const noteSearch = (e: any) => {
+        const filteredNotes = notes.filter((note: NoteType) => note.title.includes(e.target.value) || note.text.includes(e.target.value))
+        setSearchedNotes(filteredNotes)
+    }
+
+    const cleanSearchedNotes = () => {
+        setSearchedNotes([])
+    }
+
     return (
         <AppBar open={open}>
             <Toolbar>
@@ -93,7 +111,13 @@ const Header = ({open, handleDrawer}: HeaderProps) => {
                     <StyledInputBase
                         placeholder="Поиск…"
                         inputProps={{ 'aria-label': 'search' }}
+                        onChange={(e) => noteSearch(e)}
                     />
+                    <button
+                        onClick={cleanSearchedNotes}
+                    >
+                        X
+                    </button>
                 </Search>
             </Toolbar>
         </AppBar>

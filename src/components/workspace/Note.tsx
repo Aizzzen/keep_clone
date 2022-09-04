@@ -36,7 +36,14 @@ interface Note {
 }
 
 const Note = ({note}: NoteProps) => {
-    const {notes, setNotes, setSaveNotes, setDeleteNotes, setModal, setClickedNote} = useContext(AppContext)
+    const {
+        notes,
+        setNotes,
+        // setSaveNotes,
+        setDeleteNotes,
+        setModal,
+        setClickedNote
+    } = useContext(AppContext)
 
     // const saveNote = (note: Note) => {
     //     const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
