@@ -9,6 +9,8 @@ function App() {
 
   const [modal, setModal] = useState(false)
   const [clickedNote, setClickedNote] = useState(0)
+
+  const [search, setSearch] = useState(false)
   const [searchedNotes, setSearchedNotes] = useState([])
 
     return (
@@ -24,7 +26,9 @@ function App() {
       clickedNote,
       setClickedNote,
       searchedNotes,
-      setSearchedNotes
+      setSearchedNotes,
+      search,
+      setSearch
     }}>
         <AppContainer/>
     </AppContext.Provider>

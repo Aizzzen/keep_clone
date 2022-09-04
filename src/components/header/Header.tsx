@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     AppBar as MuiAppBar,
     AppBarProps as MuiAppBarProps,
@@ -79,15 +79,20 @@ interface HeaderProps {
 }
 
 const Header = ({open, handleDrawer}: HeaderProps) => {
-    const {notes, setSearchedNotes} = useContext(AppContext)
+    const {notes, setSearchedNotes, setSearch} = useContext(AppContext)
+    const [searchQuery, setSearchQuery] = useState('')
 
     const noteSearch = (e: any) => {
+        setSearchQuery(e.target.value)
+        setSearch(true)
         const filteredNotes = notes.filter((note: NoteType) => note.title.includes(e.target.value) || note.text.includes(e.target.value))
         setSearchedNotes(filteredNotes)
     }
 
     const cleanSearchedNotes = () => {
         setSearchedNotes([])
+        setSearchQuery('')
+        setSearch(false)
     }
 
     return (
@@ -111,6 +116,7 @@ const Header = ({open, handleDrawer}: HeaderProps) => {
                     <StyledInputBase
                         placeholder="Поиск…"
                         inputProps={{ 'aria-label': 'search' }}
+                        value={searchQuery}
                         onChange={(e) => noteSearch(e)}
                     />
                     <button

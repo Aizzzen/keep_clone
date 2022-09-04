@@ -45,7 +45,15 @@ const CardContainer = styled(Card)`
 `
 
 const NotesWorkspace = () => {
-    const {notes, modal, searchedNotes, setNotes, setDeleteNotes, setClickedNote, setModal} = useContext(AppContext)
+    const {notes,
+        modal,
+        searchedNotes,
+        setNotes,
+        setDeleteNotes,
+        setClickedNote,
+        setModal,
+        search
+    } = useContext(AppContext)
 
     const deleteSearchedNote = (note: Note) => {
         const filteredNotes = notes.filter((item: Note) => item.id !== note.id)
@@ -64,7 +72,7 @@ const NotesWorkspace = () => {
             <Box sx={{p: 3, width: '100%'}}>
                 <DrawerHeader />
                 <Input />
-                {!modal && notes.length > 0 &&
+                {!modal && !search && notes.length > 0 &&
                     <Grid container style={{marginTop: 16}}>
                         {notes.map((note: any) => (
                             <Grid item>
@@ -73,16 +81,16 @@ const NotesWorkspace = () => {
                         ))}
                     </Grid>
                 }
-                {!modal && notes.length === 0 &&
+                {!modal && !search && notes.length === 0 &&
                     <BigLightBox>
                         <BigLightIcon/>
                         <BigLightTitle>Здесь будут ваши заметки</BigLightTitle>
                     </BigLightBox>
                 }
-                {modal &&
+                {modal && !search &&
                     <ModalComponent open={modal} />
                 }
-                {searchedNotes.length > 0 &&
+                {search && searchedNotes.length > 0 &&
                     <Grid container style={{marginTop: 16}}>
                         {searchedNotes.map((searchedNote: any) => (
                             <Grid item>
