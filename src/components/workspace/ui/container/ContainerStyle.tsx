@@ -11,3 +11,12 @@ export const CardContainer = styled(Card)`
     box-shadow: 0 1px 2px 0 rgb(60 64 67/ 30%), 0 2px 6px 2px rgb(60 64 67/ 15%);
   }
 `
+
+export const CardMessage = styled('div')`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #72737a;
+  font-size: 20px;
+  font-weight: 700;
+`

@@ -4,7 +4,7 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import {CardContainer} from "./ContainerStyle";
+import {CardContainer, CardMessage} from "./ContainerStyle";
 import {INote} from "../../../../types/types";
 
 interface NoteProps {
@@ -16,10 +16,18 @@ interface NoteProps {
 const Container:FC<NoteProps> = ({note, deleteNote, handleCardClick}) => {
     return (
         <CardContainer>
-            <CardContent onClick={handleCardClick}>
-                <Typography>{note.title}</Typography>
-                <Typography>{note.text}</Typography>
-            </CardContent>
+            {note.title.length !== 0 && note.text.length !== 0 ?
+                <CardContent onClick={handleCardClick}>
+                    <Typography>{note.title}</Typography>
+                    <Typography>{note.text}</Typography>
+                </CardContent>
+                :
+                <CardContent onClick={handleCardClick}>
+                    <CardMessage>
+                        Пустая заметка
+                    </CardMessage>
+                </CardContent>
+            }
             <CardActions>
                 <NotificationsNoneOutlinedIcon
                     fontSize='small'

@@ -10,13 +10,19 @@ import {
 import {INote} from "../../../types/types";
 
 const SearchComponent:FC = () => {
-    const {notes, setSearchedNotes, search, setSearch} = useContext(AppContext)
-    const [searchQuery, setSearchQuery] = useState<string>('')
+    const {
+        notes,
+        setSearchedNotes,
+        search,
+        setSearch,
+        searchQuery,
+        setSearchQuery
+    } = useContext(AppContext)
 
     const noteSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value.toLowerCase())
         setSearch(true)
-        const filteredNotes = notes.filter((note: INote) => note.title.toLowerCase().includes(e.target.value) || note.text.toLowerCase().includes(e.target.value))
+        const filteredNotes = notes.filter((note: INote) => note.title.toLowerCase().includes(searchQuery) || note.text.toLowerCase().includes(searchQuery))
         setSearchedNotes(filteredNotes)
     }
 

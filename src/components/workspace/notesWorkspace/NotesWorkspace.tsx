@@ -6,7 +6,7 @@ import ModalComponent from "../modal/Modal";
 import Empty from "../ui/empty/Empty";
 import Note from "../ui/Note";
 import Searched from "../ui/Searched";
-import {DrawerHeader} from "./NotesWorkspaceStyle";
+import {DrawerHeader, NothingMessage} from "./NotesWorkspaceStyle";
 import {INote} from "../../../types/types";
 
 const NotesWorkspace:FC = () => {
@@ -14,7 +14,8 @@ const NotesWorkspace:FC = () => {
         notes,
         modal,
         searchedNotes,
-        search
+        search,
+        searchQuery
     } = useContext(AppContext)
 
     return (
@@ -45,6 +46,9 @@ const NotesWorkspace:FC = () => {
                             </Grid>
                         ))}
                     </Grid>
+                }
+                {search && searchedNotes.length === 0 &&
+                    <NothingMessage>Ничего не найдено</NothingMessage>
                 }
             </Box>
         </Box>
